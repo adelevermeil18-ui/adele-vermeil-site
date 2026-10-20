@@ -1,5 +1,3 @@
-// songs.js — Финальная версия (с чистыми названиями файлов)
-
 const tracks = [
   { title: "Appelle-moi", file: "appelle-moi.mp3" },
   { title: "Sur les bords de la Néva", file: "sur-les-bords-de-la-neva.mp3" },
@@ -46,7 +44,6 @@ function renderTracks() {
 }
 
 function togglePlay(index) {
-  // Если нажали на уже играющий трек
   if (index === currentIndex) {
     if (audioPlayer.paused) {
       audioPlayer.play().catch(e => handleError(e, index));
@@ -57,12 +54,10 @@ function togglePlay(index) {
     return;
   }
 
-  // Останавливаем предыдущий
   audioPlayer.pause();
   audioPlayer = new Audio(`audio/${tracks[index].file}`);
   currentIndex = index;
   
-  // Если файл не найден, возвращаем кнопку в исходное состояние
   audioPlayer.onerror = () => {
     alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio. Проверь название!`);
     currentIndex = -1;
@@ -73,7 +68,6 @@ function togglePlay(index) {
     .then(() => updateUI())
     .catch(e => handleError(e, index));
   
-  // Автопереход на следующий трек
   audioPlayer.onended = () => {
     if (currentIndex + 1 < tracks.length) {
       togglePlay(currentIndex + 1);
