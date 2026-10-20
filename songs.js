@@ -1,21 +1,20 @@
-// songs.js — Adèle Vermeil
-// Логика автовоспроизведения: когда трек заканчивается, включается следующий.
+// songs.js — Адаптация под твои файлы (с пробелами и preview)
 
 const tracks = [
-  { title: "Appelle-moi", file: "audio/Appelle-moi.mp3" },
-  { title: "Sur les bords de la Néva", file: "audio/Sur les bords de la Neva.mp3" },
-  { title: "Orly", file: "audio/Orly.mp3" },
-  { title: "Deux patries", file: "audio/Deux patries.mp3" },
-  { title: "Le Silence", file: "audio/Le Silence.mp3" },
-  { title: "Paris, mon amour", file: "audio/Paris, mon amour.mp3" },
-  { title: "Danse encore", file: "audio/Danse encore.mp3" },
-  { title: "Le Parfum des Lilas", file: "audio/Le Parfum des Lilas.mp3" },
-  { title: "Les nuits blanches", file: "audio/Les nuits blanches.mp3" },
-  { title: "L'orage", file: "audio/L'orage.mp3" },
-  { title: "Les Ponts de la Néva", file: "audio/Les Ponts de la Neva.mp3" },
-  { title: "Ne me réveille pas", file: "audio/ne-me-reveille-pas.mp3" },
-  { title: "Liberté", file: "audio/Liberte.mp3" },
-  { title: "Un jour de plus", file: "audio/Un jour de plus.mp3" }
+  { title: "Appelle-moi", file: "Appele moi preview.mp3" },
+  { title: "Sur les bords de la Néva", file: "Sur le bord de la Neva preview.mp3" },
+  { title: "Orly", file: "Only preview.mp3" },
+  { title: "Deux patries", file: "Deux Patries.preview.mp3" },
+  { title: "Le Silence", file: "Lt silence preview.mp3" },
+  { title: "Paris, mon amour", file: "Paris , mon amour preview.mp3" },
+  { title: "Danse encore", file: "Dance encore preview.mp3" },
+  { title: "Le Parfum des Lilas", file: "Le parfum des lilas preview.mp3" },
+  { title: "Les nuits blanches", file: "Les nuits blanches preview.mp3" },
+  { title: "L'orage", file: "L orage preview.mp3" },
+  { title: "Les Ponts de la Néva", file: "Le ponts de la Neva preview.mp3" },
+  { title: "Ne me réveille pas", file: "Ne me reveille pas preview.mp3" },
+  { title: "Liberté", file: "Liberte preview.mp3" },
+  { title: "Un jour de plus", file: "Un jour de plus preview.mp3" }
 ];
 
 let currentIndex = -1;
@@ -47,10 +46,9 @@ function renderTracks() {
 }
 
 function togglePlay(index) {
-  // Если нажали на текущий трек
   if (index === currentIndex) {
     if (audioPlayer.paused) {
-      audioPlayer.play();
+      audioPlayer.play().catch(e => handleError(e));
     } else {
       audioPlayer.pause();
     }
@@ -58,23 +56,44 @@ function togglePlay(index) {
     return;
   }
 
-  // Включаем новый трек
   audioPlayer.pause();
-  audioPlayer = new Audio(tracks[index].file);
+  
+  // Кодируем пробелы и запятые, чтобы GitHub их правильно прочитал
+  const safeFileName = encodeURIComponent(tracks[index].file);
+  const audioUrl = `audio/${safeFileName}`;
+  
+  console.log("Загружаю:", audioUrl);
+
+  audioPlayer = new Audio();
+  audioPlayer.src = audioUrl;
   currentIndex = index;
   
-  audioPlayer.play().catch(e => console.log("Ошибка воспроизведения:", e));
-  updateUI();
+  audioPlayer.play()
+    .then(() => updateUI())
+    .catch(e => {
+      console.error("Ошибка:", audioUrl);
+      alert("Не удалось загрузить: " + tracks[index].file);
+      currentIndex = -1;
+      updateUI();
+    });
   
-  // МАГИЯ АВТОПЕРЕХОДА
   audioPlayer.onended = () => {
     if (currentIndex + 1 < tracks.length) {
       togglePlay(currentIndex + 1);
     } else {
-      currentIndex = -1; // Конец альбома
+      currentIndex = -1;
       updateUI();
     }
   };
+  
+  updateUI();
+}
+
+function handleError(e) {
+    console.error(e);
+    alert("Ошибка воспроизведения.");
+    currentIndex = -1;
+    updateUI();
 }
 
 function updateUI() {
