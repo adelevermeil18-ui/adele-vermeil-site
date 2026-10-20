@@ -1,20 +1,20 @@
-// songs.js — Адаптация под твои файлы (с пробелами и preview)
+// songs.js — Финальная версия (с чистыми названиями файлов)
 
 const tracks = [
-  { title: "Appelle-moi", file: "Appele moi preview.mp3" },
-  { title: "Sur les bords de la Néva", file: "Sur le bord de la Neva preview.mp3" },
-  { title: "Orly", file: "Only preview.mp3" },
-  { title: "Deux patries", file: "Deux Patries.preview.mp3" },
-  { title: "Le Silence", file: "Lt silence preview.mp3" },
-  { title: "Paris, mon amour", file: "Paris , mon amour preview.mp3" },
-  { title: "Danse encore", file: "Dance encore preview.mp3" },
-  { title: "Le Parfum des Lilas", file: "Le parfum des lilas preview.mp3" },
-  { title: "Les nuits blanches", file: "Les nuits blanches preview.mp3" },
-  { title: "L'orage", file: "L orage preview.mp3" },
-  { title: "Les Ponts de la Néva", file: "Le ponts de la Neva preview.mp3" },
-  { title: "Ne me réveille pas", file: "Ne me reveille pas preview.mp3" },
-  { title: "Liberté", file: "Liberte preview.mp3" },
-  { title: "Un jour de plus", file: "Un jour de plus preview.mp3" }
+  { title: "Appelle-moi", file: "appelle-moi.mp3" },
+  { title: "Sur les bords de la Néva", file: "sur-les-bords-de-la-neva.mp3" },
+  { title: "Orly", file: "orly.mp3" },
+  { title: "Deux patries", file: "deux-patries.mp3" },
+  { title: "Le Silence", file: "le-silence.mp3" },
+  { title: "Paris, mon amour", file: "paris-mon-amour.mp3" },
+  { title: "Danse encore", file: "danse-encore.mp3" },
+  { title: "Le Parfum des Lilas", file: "le-parfum-des-lilas.mp3" },
+  { title: "Les nuits blanches", file: "les-nuits-blanches.mp3" },
+  { title: "L'orage", file: "lorage.mp3" },
+  { title: "Les Ponts de la Néva", file: "les-ponts-de-la-neva.mp3" },
+  { title: "Ne me réveille pas", file: "ne-me-reveille-pas.mp3" },
+  { title: "Liberté", file: "liberte.mp3" },
+  { title: "Un jour de plus", file: "un-jour-de-plus.mp3" }
 ];
 
 let currentIndex = -1;
@@ -46,9 +46,10 @@ function renderTracks() {
 }
 
 function togglePlay(index) {
+  // Если нажали на уже играющий трек
   if (index === currentIndex) {
     if (audioPlayer.paused) {
-      audioPlayer.play().catch(e => handleError(e));
+      audioPlayer.play().catch(e => handleError(e, index));
     } else {
       audioPlayer.pause();
     }
@@ -56,27 +57,23 @@ function togglePlay(index) {
     return;
   }
 
+  // Останавливаем предыдущий
   audioPlayer.pause();
-  
-  // Кодируем пробелы и запятые, чтобы GitHub их правильно прочитал
-  const safeFileName = encodeURIComponent(tracks[index].file);
-  const audioUrl = `audio/${safeFileName}`;
-  
-  console.log("Загружаю:", audioUrl);
-
-  audioPlayer = new Audio();
-  audioPlayer.src = audioUrl;
+  audioPlayer = new Audio(`audio/${tracks[index].file}`);
   currentIndex = index;
   
+  // Если файл не найден, возвращаем кнопку в исходное состояние
+  audioPlayer.onerror = () => {
+    alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio. Проверь название!`);
+    currentIndex = -1;
+    updateUI();
+  };
+
   audioPlayer.play()
     .then(() => updateUI())
-    .catch(e => {
-      console.error("Ошибка:", audioUrl);
-      alert("Не удалось загрузить: " + tracks[index].file);
-      currentIndex = -1;
-      updateUI();
-    });
+    .catch(e => handleError(e, index));
   
+  // Автопереход на следующий трек
   audioPlayer.onended = () => {
     if (currentIndex + 1 < tracks.length) {
       togglePlay(currentIndex + 1);
@@ -89,9 +86,9 @@ function togglePlay(index) {
   updateUI();
 }
 
-function handleError(e) {
-    console.error(e);
-    alert("Ошибка воспроизведения.");
+function handleError(e, index) {
+    console.error("Ошибка воспроизведения:", e);
+    alert(`Браузер не смог воспроизвести файл "${tracks[index].file}". Возможно, он поврежден или не загружен.`);
     currentIndex = -1;
     updateUI();
 }
