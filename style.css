@@ -109,10 +109,10 @@ h2::after {
   color: #8b1c1c;
 }
 
- {
-  .highlight-text {
+/* Тот самый блок с подписью */
+.highlight-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem; /* Увеличили базовый текст */
+  font-size: 1.8rem; 
   color: #333;
   text-align: center;
   margin-top: 40px;
@@ -122,12 +122,12 @@ h2::after {
 }
 
 .signature {
-  display: block; /* Имя будет с новой строки */
+  display: block; 
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic; /* Курсив */
-  font-size: 4rem; /* Огромный размер */
-  font-weight: 700; /* Жирный */
-  color: #8b1c1c; /* Багровый */
+  font-style: italic; 
+  font-size: 4rem; 
+  font-weight: 700; 
+  color: #8b1c1c; 
   letter-spacing: 2px;
   margin-top: 10px;
   text-shadow: 0 5px 15px rgba(139, 28, 28, 0.2);
@@ -183,4 +183,5 @@ footer {
   .album-cover { max-width: 90%; }
   .track { flex-direction: column; gap: 10px; text-align: center; }
   button.play-btn { width: 100%; }
+  .signature { font-size: 2.5rem; }
 }
