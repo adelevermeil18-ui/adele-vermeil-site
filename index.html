@@ -9,45 +9,87 @@
 </head>
 <body>
 
+  <!-- Переключатель языков -->
+  <div class="lang-switcher">
+    <button onclick="setLanguage('fr')" id="btn-fr">FR</button>
+    <button onclick="setLanguage('ru')" id="btn-ru" class="active">RU</button>
+    <button onclick="setLanguage('en')" id="btn-en">EN</button>
+    <button onclick="setLanguage('zh')" id="btn-zh">ZH</button>
+  </div>
+
   <header class="hero">
     <div class="hero-content">
       <img src="images/Album cover Adele.png" alt="Adèle Vermeil" class="album-cover">
       <h1>Adèle Vermeil</h1>
-      <p class="tagline">Cinematic French Chanson<br>Baroque Electro</p>
-      <p class="album-title">Альбом «Expression» (2026)</p>
+      <p class="tagline" data-i18n="heroTagline">Французский шарм. Русская глубина. Кинематографичный звук.</p>
+      <p class="album-title" data-i18n="albumTitle">Альбом «Expression» (2026)</p>
     </div>
   </header>
 
   <section id="about">
-    <h2>О проекте</h2>
-    <p>Adèle Vermeil — это музыкальное воплощение французского шарма и русской души. Воздушный электропоп, кинематографичные аранжировки и тексты, в которых живут две родины.</p>
-    <p>Её голос — это шёпот в ночи и крик в кульминации. Это история о любви, поиске себя и свободе, рассказанная на языке музыки.</p>
+    <h2 data-i18n="aboutTitle">О проекте</h2>
+    <div class="text-content">
+      <p data-i18n="aboutP1">Adèle Vermeil — это голос, в котором встречаются две стихии: парижская эстетика и петербургская меланхолия. Француженка по рождению, она уже семь лет живёт в Санкт-Петербурге — и этот город стал её домом, её воздухом, её тишиной.</p>
+      <p data-i18n="aboutP2">Её звучание — это Cinematic French Chanson, Baroque Electro и Atmospheric Art-Pop: нежный шёпот, пронзительный вокал, виолончель, фортепиано, скрипки и атмосферные синтезаторы. В её песнях — европейская утончённость и русская глубина. Не политика. Не жанр. Чувство.</p>
+      <p data-i18n="aboutP3">Она — жена Michael Matthew, вокалиста REDEMPTATION. Но личное — отдельно. Adèle Vermeil — независимый мир, где важнее интонация, чем формат.</p>
+      <div class="quote-box">
+        <p data-i18n="aboutQuote">«Я пою о том, что чувствую. О двух родинах, о любви, о поиске себя. Это моя исповедь».</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="concerts">
+    <h2 data-i18n="concertsTitle">Концерты</h2>
+    <div class="text-content">
+      <p data-i18n="concertsP1">Сейчас Adèle Vermeil работает в студийном формате. Но концертный формат мы не исключаем. Когда появится достаточный запрос от аудитории и найдётся подходящая площадка, где можно будет сохранить нужное звучание, мы обязательно рассмотрим эту возможность. Мы не спешим — и сообщим, когда будем готовы к такому шагу.</p>
+    </div>
+  </section>
+
+  <section id="dedications">
+    <h2 data-i18n="dedicationsTitle">Музыкальные посвящения</h2>
+    <div class="text-content">
+      <p data-i18n="dedicationsP1">В альбом вошли не только личные песни, но и музыкальные посвящения по реальным историям — с разрешения авторов историй.</p>
+      <p><strong>«Les Ponts de la Néva»</strong> — <span data-i18n="dedicationsP2">подарок к 30-летию совместной жизни. История пары, которая встретилась в Ленинграде. В песне звучит именно Ленинград, потому что это город их юности, город, где началась их любовь. Супруги были настолько тронуты, что разрешили включить песню в альбом без единой правки.</span></p>
+      <p><strong>«Un jour de plus»</strong> — <span data-i18n="dedicationsP3">история о любви, которая вспыхнула в Крыму. Лето, +32, тёплое море… Героиня этой истории сказала: «Я слушаю её, и как будто заново проживаю те две недели абсолютного счастья. Я снова попадаю в те места, где нашла свою Любовь и свою Веру». Эта песня помогает пережить тоску, когда на душе грустно.</span></p>
+    </div>
+  </section>
+
+  <section id="author">
+    <h2 data-i18n="authorTitle">Об авторе</h2>
+    <div class="text-content">
+      <p data-i18n="authorP1">Михаил Матвеев — автор, композитор и создатель проекта Adèle Vermeil. Он пишет музыку и тексты, вкладывая в них душу. Он создал вселенную «Путь Феникса» и группу REDEMPTATION. В Адель он услышал голос, который способен передать то, что он не может спеть сам.</p>
+      <p data-i18n="authorP2">Михаил и Адель — союз двух миров: европейского и русского, воздушного и гитарного. Адель — его муза. Михаил — тот, кто дал её таланту крылья.</p>
+    </div>
   </section>
 
   <section id="tracks">
-    <h2>Трек-лист</h2>
-    <p class="section-subtitle">14 треков. 14 историй.</p>
-    <p class="section-subtitle" style="margin-bottom: 30px;">Включите любой трек — следующий заиграет автоматически.</p>
+    <h2 data-i18n="tracksTitle">Трек-лист</h2>
+    <p class="section-subtitle" data-i18n="tracksSubtitle">14 треков. 14 историй.</p>
+    <p class="section-subtitle" style="margin-bottom: 30px;" data-i18n="tracksHint">Включите любой трек — следующий заиграет автоматически.</p>
     
     <div id="track-list"></div>
 
     <div class="boosty-link">
-      <p>Полные версии альбома и эксклюзивные материалы ищите на Boosty.</p>
-      <a href="https://boosty.to/adele-vermeil" target="_blank" class="cta-button">Перейти на Boosty</a>
+      <p data-i18n="boostyText">Полные версии альбома и эксклюзивные материалы ищите на Boosty.</p>
+      <a href="https://boosty.to/adele-vermeil" target="_blank" class="cta-button" data-i18n="boostyBtn">Перейти на Boosty</a>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Связь</h2>
-    <p>По вопросам сотрудничества и заказа музыкальных посвящений:</p>
-    <p>Email: <a href="mailto:adele.vermeil@example.com">adele.vermeil@example.com</a></p>
-    <p>Telegram: <a href="https://t.me/">@adele_vermeil</a></p>
+  <section id="connection">
+    <h2 data-i18n="connectionTitle">Связь с REDEMPTATION</h2>
+    <div class="text-content">
+      <p data-i18n="connectionP1">Adèle Vermeil и REDEMPTATION — две ветви одного дерева.</p>
+      <p data-i18n="connectionP2">Одна — нежность, электроника и женский вокал. Другая — мощь, гитарные риффы и мужской голос.</p>
+      <p data-i18n="connectionP3">Но у них одна ДНК. Один автор. Одна душа. Это не ответвление. Это два голоса одного творца.</p>
+      <p class="highlight-text" data-i18n="connectionP4">Слушайте. Чувствуйте. Это Adèle Vermeil.</p>
+    </div>
   </section>
 
   <footer>
-    <p>© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
+    <p data-i18n="footerText">© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
   </footer>
 
+  <script src="translations.js"></script>
   <script src="songs.js"></script>
 </body>
 </html>
