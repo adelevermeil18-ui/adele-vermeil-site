@@ -109,7 +109,6 @@ h2::after {
   color: #8b1c1c;
 }
 
-/* Тот самый блок с подписью */
 .highlight-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.8rem; 
@@ -131,6 +130,61 @@ h2::after {
   letter-spacing: 2px;
   margin-top: 10px;
   text-shadow: 0 5px 15px rgba(139, 28, 28, 0.2);
+}
+
+/* Форма заказа */
+.order-form {
+  margin-top: 50px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e0dcd3;
+  box-shadow: 0 10px 30px rgba(139, 28, 28, 0.05);
+}
+
+.order-form h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #8b1c1c;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.order-form p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #e0dcd3;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background: #faf9f6;
+  transition: border 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8b1c1c;
+}
+
+.order-form .cta-button {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Плеер */
