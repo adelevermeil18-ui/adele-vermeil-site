@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adèle Vermeil — визитка</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: #faf9f6;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #e0dcd3;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(139, 28, 28, 0.1);
+    }
+    .card .logo { max-width: 220px; width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .card h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 2px; color: #8b1c1c; margin-bottom: 5px; }
+    .card .subtitle { font-size: 0.85rem; color: #b8965a; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
+    .card .description { color: #555; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; text-align: left; }
+    .card .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+    .card .links a {
+      display: block; padding: 14px 20px; background: #faf9f6; color: #8b1c1c;
+      text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.95rem;
+      letter-spacing: 1px; transition: background 0.3s, transform 0.2s; border: 1px solid #e0dcd3;
+    }
+    .card .links a:hover { background: #f4ebd9; transform: translateY(-2px); }
+    .card .links a.primary { background: #8b1c1c; color: #fff; border: none; }
+    .card .links a.primary:hover { background: #b8965a; }
+    .card .footer-note { color: #888; font-size: 0.75rem; font-style: italic; line-height: 1.5; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="images/Album cover Adele.png" alt="Adèle Vermeil" class="logo">
+    <h1>Adèle Vermeil</h1>
+    <p class="subtitle" id="t-subtitle">Cinematic French Chanson</p>
+    <p class="description" id="t-desc">
+      Француженка по рождению, она нашла свой дом в Санкт-Петербурге. Её музыка — это мост между парижской эстетикой и русской глубиной.
+    </p>
+
+    <div class="links">
+      <a href="https://adelevermeil18-ui.github.io/adele-vermeil-site/" class="primary" target="_blank" id="t-btn-site">Открыть сайт</a>
+      <a href="https://boosty.to/adele-vermeil" target="_blank" id="t-btn-boosty">Boosty — альбом «Expression»</a>
+      <a href="mailto:adele.vermeil@example.com" id="t-btn-mail">Написать нам</a>
+    </div>
+
+    <p class="footer-note" id="t-footer">
+      © 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо.
+    </p>
+  </div>
+
+  <script>
+    const lang = (document.documentElement.lang || 'ru').toLowerCase();
+    
+    const texts = {
+      ru: {
+        subtitle: "Cinematic French Chanson",
+        desc: "Француженка по рождению, она нашла свой дом в Санкт-Петербурге. Её музыка — это мост между парижской эстетикой и русской глубиной.",
+        btnSite: "Открыть сайт",
+        btnBoosty: "Boosty — альбом «Expression»",
+        btnMail: "Написать нам",
+        footer: "© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо."
+      },
+      en: {
+        subtitle: "Cinematic French Chanson",
+        desc: "French by birth, she found her home in St. Petersburg. Her music is a bridge between Parisian aesthetics and Russian depth.",
+        btnSite: "Open website",
+        btnBoosty: "Boosty — 'Expression' album",
+        btnMail: "Write to us",
+        footer: "© 2026 Adèle Vermeil. Creative collective. We work remotely."
+      },
+      zh: {
+        subtitle: "电影感法国香颂",
+        desc: "她生为法国人，在圣彼得堡找到了自己的家。她的音乐是巴黎美学与俄罗斯深邃之间的桥梁。",
+        btnSite: "打开网站",
+        btnBoosty: "Boosty — 《Expression》专辑",
+        btnMail: "写信给我们",
+        footer: "© 2026 Adèle Vermeil. 创意团队。远程工作。"
+      }
+    };
+
+    const t = lang.startsWith('en') ? texts.en : lang.startsWith('zh') ? texts.zh : texts.ru;
+    
+    document.getElementById('t-subtitle').innerText = t.subtitle;
+    document.getElementById('t-desc').innerText = t.desc;
+    document.getElementById('t-btn-site').innerText = t.btnSite;
+    document.getElementById('t-btn-boosty').innerText = t.btnBoosty;
+    document.getElementById('t-btn-mail').innerText = t.btnMail;
+    document.getElementById('t-footer').innerText = t.footer;
+  </script>
+
+</body>
+</html>
