@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adèle Vermeil — визитка</title>
+  <title>Adèle Vermeil — Contact Card</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,37 +17,77 @@
       font-family: 'Montserrat', sans-serif;
     }
     .card {
-      max-width: 480px;
+      max-width: 420px;
       width: 100%;
       background: #fff;
       border: 1px solid #e0dcd3;
       border-radius: 12px;
-      padding: 40px 30px;
+      padding: 30px 25px;
       text-align: center;
       box-shadow: 0 20px 60px rgba(139, 28, 28, 0.1);
+      position: relative;
     }
-    .card .logo { max-width: 220px; width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    
+    /* Переключатель языков */
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .lang-switch button {
+      background: transparent;
+      border: 1px solid #e0dcd3;
+      color: #b8965a;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lang-switch button:hover { background: #f4ebd9; }
+    .lang-switch button.active {
+      background: #8b1c1c;
+      color: #fff;
+      border-color: #8b1c1c;
+    }
+
+    .card .logo { max-width: 200px; width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     .card h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 2px; color: #8b1c1c; margin-bottom: 5px; }
-    .card .subtitle { font-size: 0.85rem; color: #b8965a; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
-    .card .description { color: #555; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; text-align: left; }
+    .card .subtitle { font-size: 0.8rem; color: #b8965a; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
+    
+    .card .description { color: #555; font-size: 0.9rem; line-height: 1.6; margin-bottom: 30px; text-align: center; }
+    
     .card .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
     .card .links a {
       display: block; padding: 14px 20px; background: #faf9f6; color: #8b1c1c;
-      text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
       letter-spacing: 1px; transition: background 0.3s, transform 0.2s; border: 1px solid #e0dcd3;
     }
     .card .links a:hover { background: #f4ebd9; transform: translateY(-2px); }
     .card .links a.primary { background: #8b1c1c; color: #fff; border: none; }
     .card .links a.primary:hover { background: #b8965a; }
-    .card .footer-note { color: #888; font-size: 0.75rem; font-style: italic; line-height: 1.5; margin-top: 20px; }
+    
+    .card .footer-note { color: #888; font-size: 0.7rem; font-style: italic; line-height: 1.5; margin-top: 10px; }
   </style>
 </head>
 <body>
 
   <div class="card">
+    <!-- Кнопки переключения языка -->
+    <div class="lang-switch">
+      <button onclick="setLang('ru')" id="btn-ru" class="active">RU</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+      <button onclick="setLang('fr')" id="btn-fr">FR</button>
+      <button onclick="setLang('zh')" id="btn-zh">ZH</button>
+    </div>
+
     <img src="images/Album cover Adele.png" alt="Adèle Vermeil" class="logo">
     <h1>Adèle Vermeil</h1>
+    
     <p class="subtitle" id="t-subtitle">Cinematic French Chanson</p>
+    
     <p class="description" id="t-desc">
       Француженка по рождению, она нашла свой дом в Санкт-Петербурге. Её музыка — это мост между парижской эстетикой и русской глубиной.
     </p>
@@ -64,8 +104,6 @@
   </div>
 
   <script>
-    const lang = (document.documentElement.lang || 'ru').toLowerCase();
-    
     const texts = {
       ru: {
         subtitle: "Cinematic French Chanson",
@@ -83,6 +121,14 @@
         btnMail: "Write to us",
         footer: "© 2026 Adèle Vermeil. Creative collective. We work remotely."
       },
+      fr: {
+        subtitle: "Chanson Française Cinématographique",
+        desc: "Française de naissance, elle a trouvé sa maison à Saint-Pétersbourg. Sa musique est un pont entre l'esthétique parisienne et la profondeur russe.",
+        btnSite: "Ouvrir le site",
+        btnBoosty: "Boosty — album «Expression»",
+        btnMail: "Écrivez-nous",
+        footer: "© 2026 Adèle Vermeil. Collectif créatif. Nous travaillons à distance."
+      },
       zh: {
         subtitle: "电影感法国香颂",
         desc: "她生为法国人，在圣彼得堡找到了自己的家。她的音乐是巴黎美学与俄罗斯深邃之间的桥梁。",
@@ -93,14 +139,29 @@
       }
     };
 
-    const t = lang.startsWith('en') ? texts.en : lang.startsWith('zh') ? texts.zh : texts.ru;
-    
-    document.getElementById('t-subtitle').innerText = t.subtitle;
-    document.getElementById('t-desc').innerText = t.desc;
-    document.getElementById('t-btn-site').innerText = t.btnSite;
-    document.getElementById('t-btn-boosty').innerText = t.btnBoosty;
-    document.getElementById('t-btn-mail').innerText = t.btnMail;
-    document.getElementById('t-footer').innerText = t.footer;
+    function setLang(lang) {
+      // Сохраняем выбор
+      localStorage.setItem('adele_card_lang', lang);
+      
+      // Меняем активную кнопку
+      document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${lang}`).classList.add('active');
+
+      // Меняем текст
+      const t = texts[lang];
+      document.getElementById('t-subtitle').innerText = t.subtitle;
+      document.getElementById('t-desc').innerText = t.desc;
+      document.getElementById('t-btn-site').innerText = t.btnSite;
+      document.getElementById('t-btn-boosty').innerText = t.btnBoosty;
+      document.getElementById('t-btn-mail').innerText = t.btnMail;
+      document.getElementById('t-footer').innerText = t.footer;
+    }
+
+    // При загрузке ставим язык, который был выбран ранее (или русский по умолчанию)
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('adele_card_lang') || 'ru';
+      setLang(savedLang);
+    });
   </script>
 
 </body>
