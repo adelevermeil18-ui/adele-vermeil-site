@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- Переключатель языков -->
   <div class="lang-switcher">
     <button onclick="setLanguage('fr')" id="btn-fr">FR</button>
     <button onclick="setLanguage('ru')" id="btn-ru" class="active">RU</button>
@@ -51,6 +50,28 @@
       <p data-i18n="dedicationsP1">В альбом вошли не только личные песни, но и музыкальные посвящения по реальным историям — с разрешения авторов историй.</p>
       <p><strong>«Les Ponts de la Néva»</strong> — <span data-i18n="dedicationsP2">подарок к 30-летию совместной жизни. История пары, которая встретилась в Ленинграде. В песне звучит именно Ленинград, потому что это город их юности, город, где началась их любовь. Супруги были настолько тронуты, что разрешили включить песню в альбом без единой правки.</span></p>
       <p><strong>«Un jour de plus»</strong> — <span data-i18n="dedicationsP3">история о любви, которая вспыхнула в Крыму. Лето, +32, тёплое море… Героиня этой истории сказала: «Я слушаю её, и как будто заново проживаю те две недели абсолютного счастья. Я снова попадаю в те места, где нашла свою Любовь и свою Веру». Эта песня помогает пережить тоску, когда на душе грустно.</span></p>
+    </div>
+
+    <div class="order-form">
+      <h3>Обсудить посвящение</h3>
+      <p>Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.</p>
+      
+      <!-- ЗАМЕНИ adele.vermeil@example.com на свою реальную почту! -->
+      <form action="https://formsubmit.co/adele.vermeil@example.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Новая заявка на музыкальное посвящение!">
+        
+        <div class="form-group">
+          <input type="text" name="Имя" placeholder="Ваше имя" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="Контакт" placeholder="Email или Telegram" required>
+        </div>
+        <div class="form-group">
+          <textarea name="История" placeholder="Кратко о вашей истории..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Отправить заявку</button>
+      </form>
     </div>
   </section>
 
