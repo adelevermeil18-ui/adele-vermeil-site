@@ -24,10 +24,10 @@ const btnTexts = {
 
 let currentIndex = -1;
 let audioPlayer = new Audio();
-let currentLang = localStorage.getItem('adele_lang') || 'ru';
 
 function getBtnText(key) {
-  return (btnTexts[currentLang] && btnTexts[currentLang][key]) || btnTexts.ru[key];
+  const lang = localStorage.getItem('adele_lang') || 'ru';
+  return (btnTexts[lang] && btnTexts[lang][key]) || btnTexts.ru[key];
 }
 
 function renderTracks() {
@@ -53,6 +53,8 @@ function renderTracks() {
     div.appendChild(btn);
     list.appendChild(div);
   });
+  
+  updateUI();
 }
 
 function togglePlay(index) {
@@ -116,9 +118,7 @@ function updateUI() {
 }
 
 document.addEventListener('languagechange', () => {
-  currentLang = localStorage.getItem('adele_lang') || 'ru';
   renderTracks();
-  updateUI();
 });
 
 document.addEventListener('DOMContentLoaded', renderTracks);
