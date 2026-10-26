@@ -3,101 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adèle Vermeil — Cinematic French Art</title>
-  <meta name="description" content="Adèle Vermeil — музыкальные посвящения. Cinematic French Art, Atmospheric Baroque.">
+  <title>Adèle Vermeil — Expression</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="site-header">
-  <a href="#" class="logo">Adèle Vermeil</a>
-  <nav class="lang-switch" aria-label="Language">
-    <button data-lang="ru" class="active">RU</button>
-    <button data-lang="en">EN</button>
-    <button data-lang="fr">FR</button>
-    <button data-lang="zh">ZH</button>
-  </nav>
-</header>
+  <div class="lang-switcher">
+    <button onclick="setLanguage('fr')" id="btn-fr">FR</button>
+    <button onclick="setLanguage('ru')" id="btn-ru" class="active">RU</button>
+    <button onclick="setLanguage('en')" id="btn-en">EN</button>
+    <button onclick="setLanguage('zh')" id="btn-zh">ZH</button>
+  </div>
 
-<main>
-  <section class="hero">
+  <header class="hero">
     <div class="hero-content">
-      <p class="eyebrow" data-i18n="hero.eyebrow">Cinematic French Art · Atmospheric Baroque</p>
-      <h1 data-i18n="hero.title">Музыкальные посвящения</h1>
-      <p class="hero-text" data-i18n="hero.text">Мы не пишем песни на заказ. Мы создаём музыкальные посвящения.</p>
-      <a href="#contact" class="btn" data-i18n="hero.btn">Обсудить посвящение</a>
+      <img src="images/Album cover Adele.png" alt="Adèle Vermeil" class="album-cover">
+      <h1>Adèle Vermeil</h1>
+      <p class="tagline" data-i18n="heroTagline">Французский шарм. Русская глубина. Кинематографичный звук.</p>
+      <p class="album-title" data-i18n="albumTitle">Альбом «Expression» (2026)</p>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2 data-i18n="aboutTitle">О проекте</h2>
+    <div class="text-content">
+      <p data-i18n="aboutP1">Adèle Vermeil — это голос, в котором встречаются две стихии: парижская эстетика и петербургская меланхолия. Француженка по рождению, она уже семь лет живёт в Санкт-Петербурге — и этот город стал её домом, её воздухом, её тишиной.</p>
+      <p data-i18n="aboutP2">Её звучание — это Cinematic French Chanson, Baroque Electro и Atmospheric Art-Pop: нежный шёпот, пронзительный вокал, виолончель, фортепиано, скрипки и атмосферные синтезаторы. В её песнях — европейская утончённость и русская глубина. Не политика. Не жанр. Чувство.</p>
+      <p data-i18n="aboutP3">Она — жена Michael Matthew, вокалиста REDEMPTATION. Но личное — отдельно. Adèle Vermeil — независимый мир, где важнее интонация, чем формат.</p>
+      <div class="quote-box">
+        <p data-i18n="aboutQuote">«Я пою о том, что чувствую. О двух родинах, о любви, о поиске себя. Это моя исповедь».</p>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="section">
-    <h2 data-i18n="about.title">О проекте</h2>
-    <p data-i18n="about.text1">Adèle Vermeil — это cinematic French art и atmospheric baroque. Музыка, в которой Париж встречается с Петербургом, а личная история становится произведением.</p>
-    <p data-i18n="about.text2">Каждое посвящение — отдельный мир: текст, музыка, визуал и смысл. Без шаблонов и без масок.</p>
+  <section id="concerts">
+    <h2 data-i18n="concertsTitle">Концерты</h2>
+    <div class="text-content">
+      <p data-i18n="concertsP1">Сейчас Adèle Vermeil работает в студийном формате. Но концертный формат мы не исключаем. Когда появится достаточный запрос от аудитории и найдётся подходящая площадка, где можно будет сохранить нужное звучание, мы обязательно рассмотрим эту возможность. Мы не спешим — и сообщим, когда будем готовы к такому шагу.</p>
+    </div>
   </section>
 
-  <section id="music" class="section">
-    <h2 data-i18n="music.title">Музыка</h2>
-    <p data-i18n="music.subtitle">Альбом «Expression» · 2026</p>
-    <div id="songs-list" class="songs-list"></div>
+  <section id="dedications">
+    <h2 data-i18n="dedicationsTitle">Музыкальные посвящения</h2>
+    <div class="text-content">
+      <p data-i18n="dedicationsP1">В альбом вошли не только личные песни, но и музыкальные посвящения по реальным историям — с разрешения авторов историй.</p>
+      <p><strong>«Les Ponts de la Néva»</strong> — <span data-i18n="dedicationsP2">подарок к 30-летию совместной жизни. История пары, которая встретилась в Ленинграде. В песне звучит именно Ленинград, потому что это город их юности, город, где началась их любовь. Супруги были настолько тронуты, что разрешили включить песню в альбом без единой правки.</span></p>
+      <p><strong>«Un jour de plus»</strong> — <span data-i18n="dedicationsP3">история о любви, которая вспыхнула в Крыму. Лето, +32, тёплое море… Героиня этой истории сказала: «Я слушаю её, и как будто заново проживаю те две недели абсолютного счастья. Я снова попадаю в те места, где нашла свою Любовь и свою Веру». Эта песня помогает пережить тоску, когда на душе грустно.</span></p>
+    </div>
+
+    <div class="order-form">
+      <h3 data-i18n="formTitle">Обсудить посвящение</h3>
+      <p data-i18n="formDesc">Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.</p>
+      
+      <form action="https://formsubmit.co/adelevermeil18@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Новая заявка на музыкальное посвящение!">
+        
+        <div class="form-group">
+          <input type="text" name="Имя" data-i18n-placeholder="formName" placeholder="Ваше имя" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="Контакт" data-i18n-placeholder="formContact" placeholder="Email или Telegram" required>
+        </div>
+        <div class="form-group">
+          <textarea name="История" data-i18n-placeholder="formStory" placeholder="Кратко о вашей истории..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="cta-button" data-i18n="formBtn">Отправить заявку</button>
+      </form>
+    </div>
   </section>
 
-  <section id="dedications" class="section">
-    <h2 data-i18n="dedications.title">Музыкальные посвящения</h2>
-    <p data-i18n="dedications.text">Les Ponts de la Néva — про 30-летие и Ленинград. Un jour de plus — про Крым и +32. Каждая история уникальна.</p>
-    <p class="quote" data-i18n="dedications.quote">«Это не маска — это дверь в мир, которую мы просто открыли».</p>
+  <section id="author">
+    <h2 data-i18n="authorTitle">Об авторе</h2>
+    <div class="text-content">
+      <p data-i18n="authorP1">Михаил Матвеев — автор, композитор и создатель проекта Adèle Vermeil. Он пишет музыку и тексты, вкладывая в них душу. Он создал вселенную «Путь Феникса» и группу REDEMPTATION. В Адель он услышал голос, который способен передать то, что он не может спеть сам.</p>
+      <p data-i18n="authorP2">Михаил и Адель — союз двух миров: европейского и русского, воздушного и гитарного. Адель — его муза. Михаил — тот, кто дал её таланту крылья.</p>
+    </div>
   </section>
 
-  <section id="concerts" class="section">
-    <h2 data-i18n="concerts.title">Концерты</h2>
-    <p data-i18n="concerts.text">Студийный формат. Возможен при расширении аудитории. Детали не комментируем.</p>
+  <section id="tracks">
+    <h2 data-i18n="tracksTitle">Трек-лист</h2>
+    <p class="section-subtitle" data-i18n="tracksSubtitle">14 треков. 14 историй.</p>
+    <p class="section-subtitle" style="margin-bottom: 30px;" data-i18n="tracksHint">Включите любой трек — следующий заиграет автоматически.</p>
+    
+    <div id="track-list"></div>
+
+    <div class="boosty-link">
+      <p data-i18n="boostyText">Полные версии альбома и эксклюзивные материалы ищите на Boosty.</p>
+      <a href="https://boosty.to/adele-vermeil" target="_blank" class="cta-button" data-i18n="boostyBtn">Перейти на Boosty</a>
+    </div>
   </section>
 
-  <section id="author" class="section">
-    <h2 data-i18n="author.title">Об авторе</h2>
-    <p data-i18n="author.text">Проект создан Михаилом (Александром Кацем) — автором, композитором, гитаристом. Adèle Vermeil — его французский мир, отдельный от REDEMPTATION.</p>
+  <section id="connection">
+    <h2 data-i18n="connectionTitle">Связь с REDEMPTATION</h2>
+    <div class="text-content">
+      <p data-i18n="connectionP1">Adèle Vermeil и REDEMPTATION — две ветви одного дерева.</p>
+      <p data-i18n="connectionP2">Одна — нежность, электроника и женский вокал. Другая — мощь, гитарные риффы и мужской голос.</p>
+      <p data-i18n="connectionP3">Но у них одна ДНК. Один автор. Одна душа. Это не ответвление. Это два голоса одного творца.</p>
+      <p class="highlight-text" data-i18n="connectionP4">Слушайте. Чувствуйте. <span class="signature">Это Adèle Vermeil</span>.</p>
+    </div>
   </section>
 
-  <section id="contact" class="section">
-    <h2 data-i18n="contact.title">Связь</h2>
-    <p data-i18n="contact.text">Напишите, чтобы обсудить посвящение. Цены — только по запросу.</p>
+  <footer>
+    <p data-i18n="footerText">© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
+  </footer>
 
-    <form class="contact-form" action="https://formsubmit.co/adelevermeil18@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Adèle Vermeil — заявка с сайта">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-
-      <label>
-        <span data-i18n="form.name">Имя</span>
-        <input type="text" name="name" required>
-      </label>
-
-      <label>
-        <span data-i18n="form.email">Email</span>
-        <input type="email" name="email" required>
-      </label>
-
-      <label>
-        <span data-i18n="form.message">Сообщение</span>
-        <textarea name="message" rows="5" required></textarea>
-      </label>
-
-      <button type="submit" class="btn" data-i18n="form.btn">Отправить</button>
-    </form>
-  </section>
-
-  <section class="section redemptation-link">
-    <h2 data-i18n="redemptation.title">Связь с REDEMPTATION</h2>
-    <p data-i18n="redemptation.text">Adèle Vermeil и REDEMPTATION — два разных мира. Не смешиваются.</p>
-    <a href="https://redemptationofficial-creator.github.io/redemptation-band/" target="_blank" rel="noopener" class="btn btn-outline">REDEMPTATION</a>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <p>© 2026 Adèle Vermeil</p>
-  <p>adelevermeil18@gmail.com</p>
-</footer>
-
-<script src="translations.js"></script>
-<script src="songs.js"></script>
+  <script src="translations.js"></script>
+  <script src="songs.js"></script>
 </body>
 </html>
