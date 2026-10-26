@@ -238,3 +238,11 @@ footer {
   button.play-btn { width: 100%; }
   .signature { font-size: 2.5rem; }
 }
+.author-photo {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(139, 28, 28, 0.15);
+  margin: 0 auto 40px auto;
+  display: block;
+}
