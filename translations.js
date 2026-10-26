@@ -13,6 +13,12 @@ const translations = {
     dedicationsP1: "В альбом вошли не только личные песни, но и музыкальные посвящения по реальным историям — с разрешения авторов историй.",
     dedicationsP2: "подарок к 30-летию совместной жизни. История пары, которая встретилась в Ленинграде. В песне звучит именно Ленинград, потому что это город их юности, город, где началась их любовь. Супруги были настолько тронуты, что разрешили включить песню в альбом без единой правки.",
     dedicationsP3: "история о любви, которая вспыхнула в Крыму. Лето, +32, тёплое море… Героиня этой истории сказала: «Я слушаю её, и как будто заново проживаю те две недели абсолютного счастья. Я снова попадаю в те места, где нашла свою Любовь и свою Веру». Эта песня помогает пережить тоску, когда на душе грустно.",
+    formTitle: "Обсудить посвящение",
+    formDesc: "Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.",
+    formName: "Ваше имя",
+    formContact: "Email или Telegram",
+    formStory: "Кратко о вашей истории...",
+    formBtn: "Отправить заявку",
     authorTitle: "Об авторе",
     authorP1: "Михаил Матвеев — автор, композитор и создатель проекта Adèle Vermeil. Он пишет музыку и тексты, вкладывая в них душу. Он создал вселенную «Путь Феникса» и группу REDEMPTATION. В Адель он услышал голос, который способен передать то, что он не может спеть сам.",
     authorP2: "Михаил и Адель — союз двух миров: европейского и русского, воздушного и гитарного. Адель — его муза. Михаил — тот, кто дал её таланту крылья.",
@@ -42,6 +48,12 @@ const translations = {
     dedicationsP1: "The album includes not only personal songs but also musical dedications based on real stories — with the permission of the authors of the stories.",
     dedicationsP2: "a gift for a 30th wedding anniversary. The story of a couple who met in Leningrad. The song features Leningrad specifically because it is the city of their youth, the city where their love began. The couple was so touched that they allowed the song to be included in the album without a single edit.",
     dedicationsP3: "a story about a love that flared up in Crimea. Summer, +32, warm sea… The heroine of this story said: «I listen to it, and it's as if I'm reliving those two weeks of absolute happiness. I'm back in those places where I found my Love and my Faith». This song helps to overcome melancholy when you feel sad.",
+    formTitle: "Discuss a dedication",
+    formDesc: "Tell us your story. We will contact you to discuss the details.",
+    formName: "Your name",
+    formContact: "Email or Telegram",
+    formStory: "Briefly about your story...",
+    formBtn: "Send request",
     authorTitle: "About the Author",
     authorP1: "Mikhail Matveev is the author, composer, and creator of the Adèle Vermeil project. He writes music and lyrics, putting his soul into them. He created the universe «Phoenix Path» and the band REDEMPTATION. In Adèle, he heard a voice capable of conveying what he cannot sing himself.",
     authorP2: "Mikhail and Adèle are a union of two worlds: European and Russian, airy and guitar. Adèle is his muse. Mikhail is the one who gave her talent wings.",
@@ -71,6 +83,12 @@ const translations = {
     dedicationsP1: "L'album comprend non seulement des chansons personnelles, mais aussi des dédicaces musicales basées sur des histoires réelles — avec la permission des auteurs des histoires.",
     dedicationsP2: "un cadeau pour un 30e anniversaire de vie commune. L'histoire d'un couple qui s'est rencontré à Léningrad. La chanson mentionne Léningrad précisément parce que c'est la ville de leur jeunesse, la ville où leur amour a commencé. Le couple a été si touché qu'il a permis d'inclure la chanson dans l'album sans une seule modification.",
     dedicationsP3: "une histoire d'amour qui a éclaté en Crimée. L'été, +32, la mer chaude… L'héroïne de cette histoire a dit : «Je l'écoute, et c'est comme si je revivais ces deux semaines de bonheur absolu. Je retourne dans ces endroits où j'ai trouvé mon Amour et ma Foi». Cette chanson aide à surmonter la mélancolie quand on est triste.",
+    formTitle: "Discuter d'une dédicace",
+    formDesc: "Racontez votre histoire. Nous vous contacterons pour discuter des détails.",
+    formName: "Votre nom",
+    formContact: "Email ou Telegram",
+    formStory: "Brièvement votre histoire...",
+    formBtn: "Envoyer la demande",
     authorTitle: "À propos de l'auteur",
     authorP1: "Mikhail Matveev est l'auteur, compositeur et créateur du projet Adèle Vermeil. Il écrit la musique et les paroles, y mettant son âme. Il a créé l'univers «Phoenix Path» et le groupe REDEMPTATION. Chez Adèle, il a entendu une voix capable de transmettre ce qu'il ne peut pas chanter lui-même.",
     authorP2: "Mikhail et Adèle sont une union de deux mondes : européen et russe, aérien et guitaristique. Adèle est sa muse. Mikhail est celui qui a donné des ailes à son talent.",
@@ -100,6 +118,12 @@ const translations = {
     dedicationsP1: "专辑中不仅有个人歌曲，还有基于真实故事的音乐献礼——经故事作者许可。",
     dedicationsP2: "一份30周年结婚纪念日的礼物。一对在列宁格勒相遇的夫妇的故事。歌曲中特别提到列宁格勒，因为那是他们青春的城市，他们爱情开始的地方。这对夫妇深受感动，允许歌曲未经任何修改地收录进专辑。",
     dedicationsP3: "一个关于在克里米亚点燃的爱情的故事。夏天，+32度，温暖的海……这个故事的的女主角说：«我听着它，就像重新经历了那两周绝对的幸福。我又回到了那些我找到我的爱和我的信仰的地方»。这首歌在心情低落时有助于克服忧郁。",
+    formTitle: "讨论音乐献礼",
+    formDesc: "讲述您的故事。我们会联系您讨论细节。",
+    formName: "您的名字",
+    formContact: "邮箱或 Telegram",
+    formStory: "简要讲述您的故事...",
+    formBtn: "发送申请",
     authorTitle: "关于作者",
     authorP1: "Mikhail Matveev 是 Adèle Vermeil 项目的作者、作曲家和创作者。他创作音乐和歌词，倾注了灵魂。他创造了«凤凰之路»宇宙和 REDEMPTATION 乐队。在 Adèle 身上，他听到了一种能够传达他自己无法唱出的东西的声音。",
     authorP2: "Mikhail 和 Adèle 是两个世界的结合：欧洲与俄罗斯，空灵与吉他。Adèle 是他的缪斯。Mikhail 是赋予她才华翅膀的人。",
@@ -119,9 +143,10 @@ const translations = {
 
 function setLanguage(lang) {
   localStorage.setItem('adele_lang', lang);
+
   document.querySelectorAll('.lang-switcher button').forEach(btn => btn.classList.remove('active'));
   const activeBtn = document.getElementById(`btn-${lang}`);
-  if(activeBtn) activeBtn.classList.add('active');
+  if (activeBtn) activeBtn.classList.add('active');
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -129,6 +154,15 @@ function setLanguage(lang) {
       el.innerHTML = translations[lang][key];
     }
   });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.setAttribute('placeholder', translations[lang][key]);
+    }
+  });
+
+  document.dispatchEvent(new Event('languagechange'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
