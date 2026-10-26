@@ -1,123 +1,137 @@
-const tracks = [
-  { title: "Appelle-moi", file: "appelle-moi.mp3" },
-  { title: "Sur les bords de la Néva", file: "sur-les-bords-de-la-neva.mp3" },
-  { title: "Orly", file: "orly.mp3" },
-  { title: "Deux patries", file: "deux-patries.mp3" },
-  { title: "Le Silence", file: "le-silence.mp3" },
-  { title: "Paris, mon amour", file: "paris-mon-amour.mp3" },
-  { title: "Danse encore", file: "danse-encore.mp3" },
-  { title: "Le Parfum des Lilas", file: "le-parfum-des-lilas.mp3" },
-  { title: "Les nuits blanches", file: "les-nuits-blanches.mp3" },
-  { title: "L'orage", file: "lorage.mp3" },
-  { title: "Les Ponts de la Néva", file: "les-ponts-de-la-neva.mp3" },
-  { title: "Ne me réveille pas", file: "ne-me-reveille-pas.mp3" },
-  { title: "Liberté", file: "liberte.mp3" },
-  { title: "Un jour de plus", file: "un-jour-de-plus.mp3" }
+/* Adèle Vermeil — songs.js
+   Альбом «Expression» (2026), 11 треков.
+   Кнопки «Слушать» переключаются вместе с языком (не залипают). */
+
+const ADELE_SONGS = [
+  { id: 1,  file: "appelle-moi.mp3",          ru: "Позови меня",            en: "Call Me",                 fr: "Appelle-moi",              zh: "呼唤我" },
+  { id: 2,  file: "loin-de-paris.mp3",        ru: "Вдали от Парижа",        en: "Far from Paris",          fr: "Loin de Paris",            zh: "远离巴黎" },
+  { id: 3,  file: "deux-patries.mp3",         ru: "Две родины",             en: "Two Homelands",           fr: "Deux patries",             zh: "两个祖国" },
+  { id: 4,  file: "les-ponts-de-la-neva.mp3", ru: "Мосты Невы",             en: "The Bridges of the Neva", fr: "Les ponts de la Néva",     zh: "涅瓦河之桥" },
+  { id: 5,  file: "les-nuits-blanches.mp3",   ru: "Белые ночи",             en: "White Nights",            fr: "Les nuits blanches",       zh: "白夜" },
+  { id: 6,  file: "le-parfum-des-lilas.mp3",  ru: "Аромат сирени",          en: "The Scent of Lilacs",     fr: "Le parfum des lilas",      zh: "丁香芬芳" },
+  { id: 7,  file: "paris-mon-amour.mp3",      ru: "Париж, моя любовь",      en: "Paris, My Love",          fr: "Paris, mon amour",         zh: "巴黎，我的爱" },
+  { id: 8,  file: "ne-me-reveille-pas.mp3",   ru: "Не буди меня",           en: "Don't Wake Me",           fr: "Ne me réveille pas",       zh: "别叫醒我" },
+  { id: 9,  file: "le-silence.mp3",           ru: "Тишина",                 en: "The Silence",             fr: "Le Silence",               zh: "寂静" },
+  { id: 10, file: "liberte.mp3",              ru: "Свобода",                en: "Freedom",                 fr: "Liberté",                  zh: "自由" },
+  { id: 11, file: "un-jour-de-plus.mp3",      ru: "Ещё один день",          en: "One More Day",            fr: "Un jour de plus",          zh: "再多一天" }
 ];
 
-const btnTexts = {
-  ru: { listen: 'Слушать', playing: 'Играет...', pause: 'Пауза', continue: 'Продолжить' },
-  en: { listen: 'Listen', playing: 'Playing...', pause: 'Pause', continue: 'Continue' },
-  fr: { listen: 'Écouter', playing: 'En lecture...', pause: 'Pause', continue: 'Continuer' },
-  zh: { listen: '收听', playing: '播放中...', pause: '暂停', continue: '继续' }
+const BTN_LABEL = {
+  ru: "Слушать",
+  en: "Listen",
+  fr: "Écouter",
+  zh: "收听"
 };
 
-let currentIndex = -1;
-let audioPlayer = new Audio();
-let currentLang = localStorage.getItem('adele_lang') || 'ru';
+let adeleLang = "ru";
+let adeleCurrentAudio = null;
+let adeleCurrentBtn = null;
 
-function getBtnText(key) {
-  return (btnTexts[currentLang] && btnTexts[currentLang][key]) || btnTexts.ru[key];
+function getAdeleLang() {
+  return adeleLang;
 }
 
-function renderTracks() {
-  const list = document.getElementById('track-list');
+function renderAdeleSongs() {
+  const list = document.getElementById("songs-list");
   if (!list) return;
-  list.innerHTML = '';
 
-  tracks.forEach((track, index) => {
-    const div = document.createElement('div');
-    div.className = 'track';
+  list.innerHTML = "";
 
-    const title = document.createElement('span');
-    title.className = 'track-title';
-    title.textContent = `${index + 1}. ${track.title}`;
+  ADELE_SONGS.forEach(function (song) {
+    const item = document.createElement("div");
+    item.className = "song";
 
-    const btn = document.createElement('button');
-    btn.className = 'play-btn';
-    btn.dataset.index = index;
-    btn.textContent = getBtnText('listen');
-    btn.onclick = () => togglePlay(index);
+    const title = document.createElement("span");
+    title.className = "song-title";
+    title.textContent = song[adeleLang] || song.ru;
 
-    div.appendChild(title);
-    div.appendChild(btn);
-    list.appendChild(div);
+    const btn = document.createElement("button");
+    btn.className = "song-btn";
+    btn.type = "button";
+    btn.textContent = BTN_LABEL[adeleLang] || BTN_LABEL.ru;
+    btn.dataset.songId = String(song.id);
+
+    btn.addEventListener("click", function () {
+      toggleAdeleSong(song, btn);
+    });
+
+    item.appendChild(title);
+    item.appendChild(btn);
+    list.appendChild(item);
   });
 }
 
-function togglePlay(index) {
-  if (index === currentIndex) {
-    if (audioPlayer.paused) {
-      audioPlayer.play().catch(e => handleError(e, index));
+function toggleAdeleSong(song, btn) {
+  const src = "audio/" + song.file;
+
+  /* повторный клик по той же кнопке — пауза/продолжить */
+  if (adeleCurrentAudio && adeleCurrentBtn === btn) {
+    if (adeleCurrentAudio.paused) {
+      adeleCurrentAudio.play();
+      btn.textContent = BTN_LABEL[adeleLang] + " ❚❚";
     } else {
-      audioPlayer.pause();
+      adeleCurrentAudio.pause();
+      btn.textContent = BTN_LABEL[adeleLang] + " ▶";
     }
-    updateUI();
     return;
   }
 
-  audioPlayer.pause();
-  audioPlayer = new Audio(`audio/${tracks[index].file}`);
-  currentIndex = index;
+  /* остановить предыдущий трек */
+  if (adeleCurrentAudio) {
+    adeleCurrentAudio.pause();
+    adeleCurrentAudio.currentTime = 0;
+  }
+  if (adeleCurrentBtn) {
+    adeleCurrentBtn.textContent = BTN_LABEL[adeleLang] || BTN_LABEL.ru;
+  }
 
-  audioPlayer.onerror = () => {
-    alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio.`);
-    currentIndex = -1;
-    updateUI();
-  };
+  adeleCurrentAudio = new Audio(src);
+  adeleCurrentBtn = btn;
 
-  audioPlayer.play()
-    .then(() => updateUI())
-    .catch(e => handleError(e, index));
+  adeleCurrentAudio.addEventListener("ended", function () {
+    btn.textContent = BTN_LABEL[adeleLang] || BTN_LABEL.ru;
+    adeleCurrentAudio = null;
+    adeleCurrentBtn = null;
+  });
 
-  audioPlayer.onended = () => {
-    if (currentIndex + 1 < tracks.length) {
-      togglePlay(currentIndex + 1);
-    } else {
-      currentIndex = -1;
-      updateUI();
-    }
-  };
+  adeleCurrentAudio.addEventListener("error", function () {
+    btn.textContent = BTN_LABEL[adeleLang] || BTN_LABEL.ru;
+    console.warn("Adèle: не удалось загрузить " + src);
+  });
 
-  updateUI();
-}
-
-function handleError(e, index) {
-  console.error("Ошибка воспроизведения:", e);
-  alert(`Не удалось воспроизвести файл "${tracks[index].file}".`);
-  currentIndex = -1;
-  updateUI();
-}
-
-function updateUI() {
-  const buttons = document.querySelectorAll('.play-btn');
-  buttons.forEach((btn, i) => {
-    if (i === currentIndex && !audioPlayer.paused) {
-      btn.textContent = getBtnText('playing');
-      btn.classList.add('playing');
-    } else if (i === currentIndex && audioPlayer.paused) {
-      btn.textContent = getBtnText('continue');
-      btn.classList.remove('playing');
-    } else {
-      btn.textContent = getBtnText('listen');
-      btn.classList.remove('playing');
-    }
+  adeleCurrentAudio.play().then(function () {
+    btn.textContent = BTN_LABEL[adeleLang] + " ❚❚";
+  }).catch(function () {
+    btn.textContent = BTN_LABEL[adeleLang] || BTN_LABEL.ru;
   });
 }
 
-document.addEventListener('languagechange', () => {
-  currentLang = localStorage.getItem('adele_lang') || 'ru';
-  updateUI();
-});
+/* Смена языка: перерисовать карточки и сбросить подписи кнопок */
+function setAdeleLang(lang) {
+  adeleLang = lang;
 
-document.addEventListener('DOMContentLoaded', renderTracks);
+  /* если играет трек — не ломаем его, просто обновляем подпись текущей кнопки */
+  renderAdeleSongs();
+
+  if (adeleCurrentAudio && adeleCurrentBtn) {
+    const playing = !adeleCurrentAudio.paused;
+    const id = adeleCurrentBtn.dataset.songId;
+    const newBtn = document.querySelector('.song-btn[data-song-id="' + id + '"]');
+    if (newBtn) {
+      newBtn.textContent = BTN_LABEL[adeleLang] + (playing ? " ❚❚" : " ▶");
+      adeleCurrentBtn = newBtn;
+    }
+  }
+}
+
+/* Совместимость с переключателем языка (translations.js) */
+window.setAdeleLang = setAdeleLang;
+window.getAdeleLang = getAdeleLang;
+window.renderAdeleSongs = renderAdeleSongs;
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof window.getCurrentLang === "function") {
+    adeleLang = window.getCurrentLang() || "ru";
+  }
+  renderAdeleSongs();
+});
