@@ -53,24 +53,24 @@
     </div>
 
     <div class="order-form">
-      <h3>Обсудить посвящение</h3>
-      <p>Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.</p>
+      <h3 data-i18n="formTitle">Обсудить посвящение</h3>
+      <p data-i18n="formDesc">Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.</p>
       
-      <!-- ЗАМЕНИ adele.vermeil@example.com на свою реальную почту! -->
+      <!-- Замени adele.vermeil@example.com на свою реальную почту! -->
       <form action="https://formsubmit.co/adele.vermeil@example.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="Новая заявка на музыкальное посвящение!">
         
         <div class="form-group">
-          <input type="text" name="Имя" placeholder="Ваше имя" required>
+          <input type="text" name="Имя" data-i18n-placeholder="formName" placeholder="Ваше имя" required>
         </div>
         <div class="form-group">
-          <input type="text" name="Контакт" placeholder="Email или Telegram" required>
+          <input type="text" name="Контакт" data-i18n-placeholder="formContact" placeholder="Email или Telegram" required>
         </div>
         <div class="form-group">
-          <textarea name="История" placeholder="Кратко о вашей истории..." rows="4" required></textarea>
+          <textarea name="История" data-i18n-placeholder="formStory" placeholder="Кратко о вашей истории..." rows="4" required></textarea>
         </div>
-        <button type="submit" class="cta-button">Отправить заявку</button>
+        <button type="submit" class="cta-button" data-i18n="formBtn">Отправить заявку</button>
       </form>
     </div>
   </section>
