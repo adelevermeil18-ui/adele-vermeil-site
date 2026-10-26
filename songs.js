@@ -15,28 +15,40 @@ const tracks = [
   { title: "Un jour de plus", file: "un-jour-de-plus.mp3" }
 ];
 
+const btnTexts = {
+  ru: { listen: 'Слушать', playing: 'Играет...', pause: 'Пауза', continue: 'Продолжить' },
+  en: { listen: 'Listen', playing: 'Playing...', pause: 'Pause', continue: 'Continue' },
+  fr: { listen: 'Écouter', playing: 'En lecture...', pause: 'Pause', continue: 'Continuer' },
+  zh: { listen: '收听', playing: '播放中...', pause: '暂停', continue: '继续' }
+};
+
 let currentIndex = -1;
 let audioPlayer = new Audio();
+let currentLang = localStorage.getItem('adele_lang') || 'ru';
+
+function getBtnText(key) {
+  return (btnTexts[currentLang] && btnTexts[currentLang][key]) || btnTexts.ru[key];
+}
 
 function renderTracks() {
   const list = document.getElementById('track-list');
   if (!list) return;
   list.innerHTML = '';
-  
+
   tracks.forEach((track, index) => {
     const div = document.createElement('div');
     div.className = 'track';
-    
+
     const title = document.createElement('span');
     title.className = 'track-title';
     title.textContent = `${index + 1}. ${track.title}`;
-    
+
     const btn = document.createElement('button');
     btn.className = 'play-btn';
-    btn.textContent = 'Слушать';
     btn.dataset.index = index;
+    btn.textContent = getBtnText('listen');
     btn.onclick = () => togglePlay(index);
-    
+
     div.appendChild(title);
     div.appendChild(btn);
     list.appendChild(div);
@@ -57,9 +69,9 @@ function togglePlay(index) {
   audioPlayer.pause();
   audioPlayer = new Audio(`audio/${tracks[index].file}`);
   currentIndex = index;
-  
+
   audioPlayer.onerror = () => {
-    alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio. Проверь название!`);
+    alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio.`);
     currentIndex = -1;
     updateUI();
   };
@@ -67,7 +79,7 @@ function togglePlay(index) {
   audioPlayer.play()
     .then(() => updateUI())
     .catch(e => handleError(e, index));
-  
+
   audioPlayer.onended = () => {
     if (currentIndex + 1 < tracks.length) {
       togglePlay(currentIndex + 1);
@@ -76,31 +88,36 @@ function togglePlay(index) {
       updateUI();
     }
   };
-  
+
   updateUI();
 }
 
 function handleError(e, index) {
-    console.error("Ошибка воспроизведения:", e);
-    alert(`Браузер не смог воспроизвести файл "${tracks[index].file}". Возможно, он поврежден или не загружен.`);
-    currentIndex = -1;
-    updateUI();
+  console.error("Ошибка воспроизведения:", e);
+  alert(`Не удалось воспроизвести файл "${tracks[index].file}".`);
+  currentIndex = -1;
+  updateUI();
 }
 
 function updateUI() {
   const buttons = document.querySelectorAll('.play-btn');
   buttons.forEach((btn, i) => {
     if (i === currentIndex && !audioPlayer.paused) {
-      btn.textContent = 'Играет...';
+      btn.textContent = getBtnText('playing');
       btn.classList.add('playing');
     } else if (i === currentIndex && audioPlayer.paused) {
-      btn.textContent = 'Продолжить';
+      btn.textContent = getBtnText('continue');
       btn.classList.remove('playing');
     } else {
-      btn.textContent = 'Слушать';
+      btn.textContent = getBtnText('listen');
       btn.classList.remove('playing');
     }
   });
 }
+
+document.addEventListener('languagechange', () => {
+  currentLang = localStorage.getItem('adele_lang') || 'ru';
+  updateUI();
+});
 
 document.addEventListener('DOMContentLoaded', renderTracks);
