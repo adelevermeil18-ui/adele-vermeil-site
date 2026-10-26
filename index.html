@@ -4,8 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adèle Vermeil — Expression</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Подключение шрифтов -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- ВСТРОЕННЫЕ СТИЛИ (Твой светлый дизайн) -->
+  <style>
+    :root {
+      --bg-color: #fbf9f4;
+      --text-main: #2c2c2c;
+      --text-muted: #666;
+      --burgundy: #6b1d24;
+      --gold: #c1a062;
+      --white: #ffffff;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+    
+    /* Переключатель языков */
+    .lang-switcher { position: fixed; top: 20px; right: 20px; background: var(--white); border-radius: 30px; padding: 4px; display: flex; gap: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 100; }
+    .lang-switcher button { background: transparent; border: none; padding: 6px 14px; border-radius: 20px; font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
+    .lang-switcher button.active { background: var(--burgundy); color: var(--white); }
+
+    /* Главный экран */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
+    .hero-content { max-width: 800px; }
+    .album-cover { width: 100%; max-width: 380px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin-bottom: 40px; }
+    .hero h1 { font-family: var(--font-serif); font-size: 4rem; color: var(--burgundy); font-weight: 400; margin-bottom: 10px; letter-spacing: 1px; }
+    .tagline { color: var(--gold); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 3px; font-weight: 600; margin-bottom: 15px; }
+    .album-title { font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: var(--text-muted); }
+
+    /* Секции */
+    section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
+    section h2 { font-family: var(--font-serif); font-size: 2.5rem; color: var(--burgundy); text-align: center; margin-bottom: 40px; font-weight: 400; }
+    .text-content p { margin-bottom: 20px; font-size: 1rem; color: #444; font-weight: 300; }
+    
+    .quote-box { border-left: 2px solid var(--gold); padding-left: 20px; margin: 40px 0; }
+    .quote-box p { font-family: var(--font-serif); font-size: 1.3rem; font-style: italic; color: var(--text-main); }
+    .highlight-text { font-family: var(--font-serif); font-size: 1.5rem; color: var(--burgundy); text-align: center; margin-top: 30px; }
+    .signature { font-style: italic; color: var(--gold); }
+
+    /* Форма */
+    .order-form { background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 50px; }
+    .order-form h3 { font-family: var(--font-serif); font-size: 2rem; color: var(--burgundy); text-align: center; margin-bottom: 10px; font-weight: 400; }
+    .order-form > p { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 0.9rem; }
+    .form-group { margin-bottom: 15px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 15px; border: 1px solid #e0e0e0; border-radius: 6px; font-family: var(--font-sans); font-size: 0.9rem; background: #fafafa; transition: border 0.3s ease; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
+    .cta-button { display: inline-block; width: 100%; padding: 16px; background: var(--burgundy); color: var(--white); border: none; border-radius: 30px; font-family: var(--font-sans); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: background 0.3s ease; text-align: center; text-decoration: none; }
+    .cta-button:hover { background: #55151b; }
+
+    /* Трек-лист */
+    .section-subtitle { text-align: center; color: var(--text-muted); font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; }
+    #track-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .track { background: var(--white); padding: 20px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; border: 1px solid #f0f0f0; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .track:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
+    .track-title { font-size: 1rem; font-weight: 400; color: var(--text-main); }
+    .play-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 24px; border-radius: 30px; font-family: var(--font-sans); font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; min-width: 100px; }
+    .play-btn:hover, .play-btn.playing { background: var(--gold); color: var(--white); }
+
+    /* Boosty и подвал */
+    .boosty-link { text-align: center; margin-top: 40px; }
+    .boosty-link p { margin-bottom: 20px; color: var(--text-muted); font-size: 0.9rem; }
+    .boosty-link .cta-button { width: auto; padding: 15px 40px; }
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid #eaeaea; margin-top: 40px; }
+    footer p { font-size: 0.8rem; color: #999; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .album-cover { max-width: 280px; }
+      .order-form { padding: 25px; }
+      .track { flex-direction: column; gap: 15px; text-align: center; }
+      .play-btn { width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
@@ -109,7 +182,307 @@
     <p data-i18n="footerText">© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
   </footer>
 
-  <script src="translations.js"></script>
-  <script src="songs.js"></script>
+  <!-- ВСТРОЕННЫЕ СКРИПТЫ -->
+  <script>
+    // 1. ТЕКСТЫ (translations)
+    const translations = {
+      ru: {
+        heroTagline: "Французский шарм. Русская глубина. Кинематографичный звук.",
+        albumTitle: "Альбом «Expression» (2026)",
+        aboutTitle: "О проекте",
+        aboutP1: "Adèle Vermeil — это голос, в котором встречаются две стихии: парижская эстетика и петербургская меланхолия. Француженка по рождению, она уже семь лет живёт в Санкт-Петербурге — и этот город стал её домом, её воздухом, её тишиной.",
+        aboutP2: "Её звучание — это Cinematic French Chanson, Baroque Electro и Atmospheric Art-Pop: нежный шёпот, пронзительный вокал, виолончель, фортепиано, скрипки и атмосферные синтезаторы. В её песнях — европейская утончённость и русская глубина. Не политика. Не жанр. Чувство.",
+        aboutP3: "Она — жена Michael Matthew, вокалиста REDEMPTATION. Но личное — отдельно. Adèle Vermeil — независимый мир, где важнее интонация, чем формат.",
+        aboutQuote: "«Я пою о том, что чувствую. О двух родинах, о любви, о поиске себя. Это моя исповедь».",
+        concertsTitle: "Концерты",
+        concertsP1: "Сейчас Adèle Vermeil работает в студийном формате. Но концертный формат мы не исключаем. Когда появится достаточный запрос от аудитории и найдётся подходящая площадка, где можно будет сохранить нужное звучание, мы обязательно рассмотрим эту возможность. Мы не спешим — и сообщим, когда будем готовы к такому шагу.",
+        dedicationsTitle: "Музыкальные посвящения",
+        dedicationsP1: "В альбом вошли не только личные песни, но и музыкальные посвящения по реальным историям — с разрешения авторов историй.",
+        dedicationsP2: "подарок к 30-летию совместной жизни. История пары, которая встретилась в Ленинграде. В песне звучит именно Ленинград, потому что это город их юности, город, где началась их любовь. Супруги были настолько тронуты, что разрешили включить песню в альбом без единой правки.",
+        dedicationsP3: "история о любви, которая вспыхнула в Крыму. Лето, +32, тёплое море… Героиня этой истории сказала: «Я слушаю её, и как будто заново проживаю те две недели абсолютного счастья. Я снова попадаю в те места, где нашла свою Любовь и свою Веру». Эта песня помогает пережить тоску, когда на душе грустно.",
+        formTitle: "Обсудить посвящение",
+        formDesc: "Расскажите о своей истории. Мы свяжемся с вами, чтобы обсудить детали.",
+        formName: "Ваше имя",
+        formContact: "Email или Telegram",
+        formStory: "Кратко о вашей истории...",
+        formBtn: "Отправить заявку",
+        authorTitle: "Об авторе",
+        authorP1: "Михаил Матвеев — автор, композитор и создатель проекта Adèle Vermeil. Он пишет музыку и тексты, вкладывая в них душу. Он создал вселенную «Путь Феникса» и группу REDEMPTATION. В Адель он услышал голос, который способен передать то, что он не может спеть сам.",
+        authorP2: "Михаил и Адель — союз двух миров: европейского и русского, воздушного и гитарного. Адель — его муза. Михаил — тот, кто дал её таланту крылья.",
+        tracksTitle: "Трек-лист",
+        tracksSubtitle: "14 треков. 14 историй.",
+        tracksHint: "Включите любой трек — следующий заиграет автоматически.",
+        boostyText: "Полные версии альбома и эксклюзивные материалы ищите на Boosty.",
+        boostyBtn: "Перейти на Boosty",
+        connectionTitle: "Связь с REDEMPTATION",
+        connectionP1: "Adèle Vermeil и REDEMPTATION — две ветви одного дерева.",
+        connectionP2: "Одна — нежность, электроника и женский вокал. Другая — мощь, гитарные риффы и мужской голос.",
+        connectionP3: "Но у них одна ДНК. Один автор. Одна душа. Это не ответвление. Это два голоса одного творца.",
+        connectionP4: "Слушайте. Чувствуйте. <span class=\"signature\">Это Adèle Vermeil</span>.",
+        footerText: "© 2026 Adèle Vermeil. Творческий коллектив. Работаем удалённо. Детали не комментируем."
+      },
+      en: {
+        heroTagline: "French charm. Russian depth. Cinematic sound.",
+        albumTitle: "Album «Expression» (2026)",
+        aboutTitle: "About the Project",
+        aboutP1: "Adèle Vermeil is a voice where two elements meet: Parisian aesthetics and St. Petersburg melancholy. French by birth, she has lived in St. Petersburg for seven years now — and this city has become her home, her air, her silence.",
+        aboutP2: "Her sound is Cinematic French Chanson, Baroque Electro, and Atmospheric Art-Pop: a gentle whisper, piercing vocals, cello, piano, violins, and atmospheric synthesizers. In her songs — European sophistication and Russian depth. Not politics. Not a genre. A feeling.",
+        aboutP3: "She is the wife of Michael Matthew, the vocalist of REDEMPTATION. But personal is separate. Adèle Vermeil is an independent world where intonation matters more than format.",
+        aboutQuote: "«I sing about what I feel. About two homelands, about love, about finding myself. This is my confession».",
+        concertsTitle: "Concerts",
+        concertsP1: "Currently, Adèle Vermeil works in a studio format. But we do not exclude a concert format. When there is sufficient demand from the audience and a suitable venue is found where the necessary sound can be preserved, we will definitely consider this opportunity. We are not rushing — and we will let you know when we are ready for such a step.",
+        dedicationsTitle: "Musical Dedications",
+        dedicationsP1: "The album includes not only personal songs but also musical dedications based on real stories — with the permission of the authors of the stories.",
+        dedicationsP2: "a gift for a 30th wedding anniversary. The story of a couple who met in Leningrad. The song features Leningrad specifically because it is the city of their youth, the city where their love began. The couple was so touched that they allowed the song to be included in the album without a single edit.",
+        dedicationsP3: "a story about a love that flared up in Crimea. Summer, +32, warm sea… The heroine of this story said: «I listen to it, and it's as if I'm reliving those two weeks of absolute happiness. I'm back in those places where I found my Love and my Faith». This song helps to overcome melancholy when you feel sad.",
+        formTitle: "Discuss a dedication",
+        formDesc: "Tell us your story. We will contact you to discuss the details.",
+        formName: "Your name",
+        formContact: "Email or Telegram",
+        formStory: "Briefly about your story...",
+        formBtn: "Send request",
+        authorTitle: "About the Author",
+        authorP1: "Mikhail Matveev is the author, composer, and creator of the Adèle Vermeil project. He writes music and lyrics, putting his soul into them. He created the universe «Phoenix Path» and the band REDEMPTATION. In Adèle, he heard a voice capable of conveying what he cannot sing himself.",
+        authorP2: "Mikhail and Adèle are a union of two worlds: European and Russian, airy and guitar. Adèle is his muse. Mikhail is the one who gave her talent wings.",
+        tracksTitle: "Tracklist",
+        tracksSubtitle: "14 tracks. 14 stories.",
+        tracksHint: "Play any track — the next one will start automatically.",
+        boostyText: "Find the full album versions and exclusive content on Boosty.",
+        boostyBtn: "Go to Boosty",
+        connectionTitle: "Connection with REDEMPTATION",
+        connectionP1: "Adèle Vermeil and REDEMPTATION are two branches of the same tree.",
+        connectionP2: "One — tenderness, electronics, and female vocals. The other — power, guitar riffs, and male vocals.",
+        connectionP3: "But they have one DNA. One author. One soul. This is not a side project. These are two voices of one creator.",
+        connectionP4: "Listen. Feel. <span class=\"signature\">This is Adèle Vermeil</span>.",
+        footerText: "© 2026 Adèle Vermeil. Creative collective. We work remotely. Details are not commented on."
+      },
+      fr: {
+        heroTagline: "Charme français. Profondeur russe. Son cinématographique.",
+        albumTitle: "Album «Expression» (2026)",
+        aboutTitle: "À propos du projet",
+        aboutP1: "Adèle Vermeil est une voix où deux éléments se rencontrent : l'esthétique parisienne et la mélancolie de Saint-Pétersbourg. Française de naissance, elle vit à Saint-Pétersbourg depuis sept ans — et cette ville est devenue sa maison, son air, son silence.",
+        aboutP2: "Son son est Cinematic French Chanson, Baroque Electro et Atmospheric Art-Pop : un murmure doux, un chant perçant, le violoncelle, le piano, les violons et les synthétiseurs atmosphériques. Dans ses chansons — sophistication européenne et profondeur russe. Pas de politique. Pas de genre. Un sentiment.",
+        aboutP3: "Elle est l'épouse de Michael Matthew, le chanteur de REDEMPTATION. Mais le personnel est séparé. Adèle Vermeil est un monde indépendant où l'intonation compte plus que le format.",
+        aboutQuote: "«Je chante ce que je ressens. Deux patries, l'amour, la recherche de soi. C'est ma confession».",
+        concertsTitle: "Concerts",
+        concertsP1: "Actuellement, Adèle Vermeil travaille en format studio. Mais nous n'excluons pas le format concert. Lorsqu'il y aura une demande suffisante du public et qu'une salle appropriée sera trouvée où le son nécessaire pourra être préservé, nous examinerons certainement cette possibilité. Nous ne sommes pas pressés — et nous vous informerons quand nous serons prêts pour une telle étape.",
+        dedicationsTitle: "Dédicaces musicales",
+        dedicationsP1: "L'album comprend non seulement des chansons personnelles, mais aussi des dédicaces musicales basées sur des histoires réelles — avec la permission des auteurs des histoires.",
+        dedicationsP2: "un cadeau pour un 30e anniversaire de vie commune. L'histoire d'un couple qui s'est rencontré à Léningrad. La chanson mentionne Léningrad précisément parce que c'est la ville de leur jeunesse, la ville où leur amour a commencé. Le couple a été si touché qu'il a permis d'inclure la chanson dans l'album sans une seule modification.",
+        dedicationsP3: "une histoire d'amour qui a éclaté en Crimée. L'été, +32, la mer chaude… L'héroïne de cette histoire a dit : «Je l'écoute, et c'est comme si je revivais ces deux semaines de bonheur absolu. Je retourne dans ces endroits où j'ai trouvé mon Amour et ma Foi». Cette chanson aide à surmonter la mélancolie quand on est triste.",
+        formTitle: "Discuter d'une dédicace",
+        formDesc: "Racontez votre histoire. Nous vous contacterons pour discuter des détails.",
+        formName: "Votre nom",
+        formContact: "Email ou Telegram",
+        formStory: "Brièvement votre histoire...",
+        formBtn: "Envoyer la demande",
+        authorTitle: "À propos de l'auteur",
+        authorP1: "Mikhail Matveev est l'auteur, compositeur et créateur du projet Adèle Vermeil. Il écrit la musique et les paroles, y mettant son âme. Il a créé l'univers «Phoenix Path» et le groupe REDEMPTATION. Chez Adèle, il a entendu une voix capable de transmettre ce qu'il ne peut pas chanter lui-même.",
+        authorP2: "Mikhail et Adèle sont une union de deux mondes : européen et russe, aérien et guitaristique. Adèle est sa muse. Mikhail est celui qui a donné des ailes à son talent.",
+        tracksTitle: "Liste des pistes",
+        tracksSubtitle: "14 pistes. 14 histoires.",
+        tracksHint: "Lancez une piste — la suivante démarrera automatiquement.",
+        boostyText: "Retrouvez les versions complètes de l'album et les contenus exclusifs sur Boosty.",
+        boostyBtn: "Aller sur Boosty",
+        connectionTitle: "Lien avec REDEMPTATION",
+        connectionP1: "Adèle Vermeil et REDEMPTATION sont deux branches du même arbre.",
+        connectionP2: "L'une — la tendresse, l'électronique et la voix féminine. L'autre — la puissance, les riffs de guitare et la voix masculine.",
+        connectionP3: "Mais ils ont un seul ADN. Un seul auteur. Une seule âme. Ce n'est pas une branche secondaire. Ce sont deux voix d'un seul créateur.",
+        connectionP4: "Écoutez. Ressentez. <span class=\"signature\">C'est Adèle Vermeil</span>.",
+        footerText: "© 2026 Adèle Vermeil. Collectif créatif. Nous travaillons à distance. Les détails ne sont pas commentés."
+      },
+      zh: {
+        heroTagline: "法式魅力。俄式深邃。电影般的声场。",
+        albumTitle: "专辑 «Expression» (2026)",
+        aboutTitle: "关于项目",
+        aboutP1: "Adèle Vermeil 是一种声音，在这里两种元素相遇：巴黎的美学与圣彼得堡的忧郁。她生为法国人，现已在圣彼得堡生活了七年——这座城市成为了她的家，她的空气，她的寂静。",
+        aboutP2: "她的音乐是电影感法国香颂、巴洛克电子和氛围艺术流行：轻柔的低语、直击人心的演唱、大提琴、钢琴、小提琴和氛围合成器。在她的歌里——欧洲的精致与俄罗斯的深邃。不是政治。不是流派。是感觉。",
+        aboutP3: "她是 REDEMPTATION 主唱 Michael Matthew 的妻子。但私人生活是分开的。Adèle Vermeil 是一个独立的世界，在这里语调比形式更重要。",
+        aboutQuote: "«我唱我所感受的。关于两个祖国，关于爱，关于寻找自我。这是我的自白»。",
+        concertsTitle: "演唱会",
+        concertsP1: "目前 Adèle Vermeil 以录音室形式工作。但我们不排除演唱会的形式。当观众需求足够大，并找到能够保持所需音效的合适场地时，我们一定会考虑这种可能性。我们不着急——当我们准备好迈出这一步时，会通知大家。",
+        dedicationsTitle: "音乐献礼",
+        dedicationsP1: "专辑中不仅有个人歌曲，还有基于真实故事的音乐献礼——经故事作者许可。",
+        dedicationsP2: "一份30周年结婚纪念日的礼物。一对在列宁格勒相遇的夫妇的故事。歌曲中特别提到列宁格勒，因为那是他们青春的城市，他们爱情开始的地方。这对夫妇深受感动，允许歌曲未经任何修改地收录进专辑。",
+        dedicationsP3: "一个关于在克里米亚点燃的爱情的故事。夏天，+32度，温暖的海……这个故事的的女主角说：«我听着它，就像重新经历了那两周绝对的幸福。我又回到了那些我找到我的爱和我的信仰的地方»。这首歌在心情低落时有助于克服忧郁。",
+        formTitle: "讨论音乐献礼",
+        formDesc: "讲述您的故事。我们会联系您讨论细节。",
+        formName: "您的名字",
+        formContact: "邮箱或 Telegram",
+        formStory: "简要讲述您的故事...",
+        formBtn: "发送申请",
+        authorTitle: "关于作者",
+        authorP1: "Mikhail Matveev 是 Adèle Vermeil 项目的作者、作曲家和创作者。他创作音乐和歌词，倾注了灵魂。他创造了«凤凰之路»宇宙和 REDEMPTATION 乐队。在 Adèle 身上，他听到了一种能够传达他自己无法唱出的东西的声音。",
+        authorP2: "Mikhail 和 Adèle 是两个世界的结合：欧洲与俄罗斯，空灵与吉他。Adèle 是他的缪斯。Mikhail 是赋予她才华翅膀的人。",
+        tracksTitle: "曲目列表",
+        tracksSubtitle: "14首曲目。14个故事。",
+        tracksHint: "播放任意曲目——下一首将自动开始。",
+        boostyText: "在 Boosty 上找到专辑完整版和独家内容。",
+        boostyBtn: "前往 Boosty",
+        connectionTitle: "与 REDEMPTATION 的联系",
+        connectionP1: "Adèle Vermeil 和 REDEMPTATION 是同一棵树上的两个分支。",
+        connectionP2: "一个是温柔、电子和女声。另一个是力量、吉他连复段和男声。",
+        connectionP3: "但它们有一个DNA。一个作者。一个灵魂。这不是支线。这是一个创作者的两个声音。",
+        connectionP4: "倾听。感受。 <span class=\"signature\">这就是 Adèle Vermeil</span>。",
+        footerText: "© 2026 Adèle Vermeil. 创意团队。远程工作。细节不予置评。"
+      }
+    };
+
+    // 2. МУЗЫКА (songs)
+    const tracks = [
+      { title: "Appelle-moi", file: "appelle-moi.mp3" },
+      { title: "Sur les bords de la Néva", file: "sur-les-bords-de-la-neva.mp3" },
+      { title: "Orly", file: "orly.mp3" },
+      { title: "Deux patries", file: "deux-patries.mp3" },
+      { title: "Le Silence", file: "le-silence.mp3" },
+      { title: "Paris, mon amour", file: "paris-mon-amour.mp3" },
+      { title: "Danse encore", file: "danse-encore.mp3" },
+      { title: "Le Parfum des Lilas", file: "le-parfum-des-lilas.mp3" },
+      { title: "Les nuits blanches", file: "les-nuits-blanches.mp3" },
+      { title: "L'orage", file: "lorage.mp3" },
+      { title: "Les Ponts de la Néva", file: "les-ponts-de-la-neva.mp3" },
+      { title: "Ne me réveille pas", file: "ne-me-reveille-pas.mp3" },
+      { title: "Liberté", file: "liberte.mp3" },
+      { title: "Un jour de plus", file: "un-jour-de-plus.mp3" }
+    ];
+
+    const btnTexts = {
+      ru: { listen: 'Слушать', playing: 'Играет...', pause: 'Пауза', continue: 'Продолжить' },
+      en: { listen: 'Listen', playing: 'Playing...', pause: 'Pause', continue: 'Continue' },
+      fr: { listen: 'Écouter', playing: 'En lecture...', pause: 'Pause', continue: 'Continuer' },
+      zh: { listen: '收听', playing: '播放中...', pause: '暂停', continue: '继续' }
+    };
+
+    let currentIndex = -1;
+    let audioPlayer = new Audio();
+    let currentLang = localStorage.getItem('adele_lang') || 'ru';
+
+    // 3. ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЯЗЫКА
+    function setLanguage(lang) {
+      localStorage.setItem('adele_lang', lang);
+      currentLang = lang;
+
+      document.querySelectorAll('.lang-switcher button').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${lang}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+
+      // Обновляем кнопки в трек-листе
+      updateUI();
+    }
+
+    // 4. ЛОГИКА ПЛЕЕРА
+    function getBtnText(key) {
+      // Всегда берем актуальный язык
+      currentLang = localStorage.getItem('adele_lang') || 'ru';
+      return (btnTexts[currentLang] && btnTexts[currentLang][key]) || btnTexts.ru[key];
+    }
+
+    function renderTracks() {
+      const list = document.getElementById('track-list');
+      if (!list) return;
+      list.innerHTML = '';
+
+      tracks.forEach((track, index) => {
+        const div = document.createElement('div');
+        div.className = 'track';
+
+        const title = document.createElement('span');
+        title.className = 'track-title';
+        title.textContent = `${index + 1}. ${track.title}`;
+
+        const btn = document.createElement('button');
+        btn.className = 'play-btn';
+        btn.dataset.index = index;
+        btn.textContent = getBtnText('listen');
+        btn.onclick = () => togglePlay(index);
+
+        div.appendChild(title);
+        div.appendChild(btn);
+        list.appendChild(div);
+      });
+      updateUI();
+    }
+
+    function togglePlay(index) {
+      if (index === currentIndex) {
+        if (audioPlayer.paused) {
+          audioPlayer.play().catch(e => handleError(e, index));
+        } else {
+          audioPlayer.pause();
+        }
+        updateUI();
+        return;
+      }
+
+      audioPlayer.pause();
+      audioPlayer = new Audio(`audio/${tracks[index].file}`);
+      currentIndex = index;
+
+      audioPlayer.onerror = () => {
+        alert(`Ошибка 404: Файл "${tracks[index].file}" не найден в папке audio.`);
+        currentIndex = -1;
+        updateUI();
+      };
+
+      audioPlayer.play()
+        .then(() => updateUI())
+        .catch(e => handleError(e, index));
+
+      audioPlayer.onended = () => {
+        if (currentIndex + 1 < tracks.length) {
+          togglePlay(currentIndex + 1);
+        } else {
+          currentIndex = -1;
+          updateUI();
+        }
+      };
+
+      updateUI();
+    }
+
+    function handleError(e, index) {
+      console.error("Ошибка воспроизведения:", e);
+      alert(`Не удалось воспроизвести файл "${tracks[index].file}".`);
+      currentIndex = -1;
+      updateUI();
+    }
+
+    function updateUI() {
+      const buttons = document.querySelectorAll('.play-btn');
+      buttons.forEach((btn, i) => {
+        if (i === currentIndex && !audioPlayer.paused) {
+          btn.textContent = getBtnText('playing');
+          btn.classList.add('playing');
+        } else if (i === currentIndex && audioPlayer.paused) {
+          btn.textContent = getBtnText('continue');
+          btn.classList.remove('playing');
+        } else {
+          btn.textContent = getBtnText('listen');
+          btn.classList.remove('playing');
+        }
+      });
+    }
+
+    // 5. ЗАПУСК
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTracks();
+      const savedLang = localStorage.getItem('adele_lang') || 'ru';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
