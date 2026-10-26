@@ -27,8 +27,6 @@ let audioPlayer = new Audio();
 let currentLang = localStorage.getItem('adele_lang') || 'ru';
 
 function getBtnText(key) {
-  // Всегда читаем актуальный язык из localStorage, чтобы не залипало
-  currentLang = localStorage.getItem('adele_lang') || 'ru';
   return (btnTexts[currentLang] && btnTexts[currentLang][key]) || btnTexts.ru[key];
 }
 
@@ -55,9 +53,6 @@ function renderTracks() {
     div.appendChild(btn);
     list.appendChild(div);
   });
-  
-  // Принудительно обновляем интерфейс после отрисовки
-  updateUI();
 }
 
 function togglePlay(index) {
@@ -121,6 +116,8 @@ function updateUI() {
 }
 
 document.addEventListener('languagechange', () => {
+  currentLang = localStorage.getItem('adele_lang') || 'ru';
+  renderTracks();
   updateUI();
 });
 
