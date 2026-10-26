@@ -44,7 +44,7 @@ header.hero {
 }
 
 .album-cover {
-  max-width: 600px; /* Увеличили размер обложки */
+  max-width: 600px;
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 25px 60px rgba(139, 28, 28, 0.2);
